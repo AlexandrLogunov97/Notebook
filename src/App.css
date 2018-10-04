@@ -76,6 +76,7 @@
 }
 .textarea{
   resize: vertical;
+  height: 150px;
 }
 .item-devide{
   width: 100%;

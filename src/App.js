@@ -60,7 +60,6 @@ class App extends Component {
       newNotes.push(note);
       this.setState({
         notes: newNotes,
-        mode: 'View',
         selectedNote: note
       });
     }

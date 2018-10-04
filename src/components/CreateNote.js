@@ -70,7 +70,7 @@ export class CreateNote extends Component {
         return (
             <div>
                 <h3 className='item-justify'>Create</h3>
-                <input className='item-justify' placeholder='Title' onChange={this.onCreatedTitleChanging} /><br />
+                <input className='item-justify' placeholder='Title (not empty)' onChange={this.onCreatedTitleChanging} /><br />
                 <div className='item-justify'>
                     <input className='item-inner-justify' placeholder='Tag' onChange={this.onCreatedTagChange} value={this.state.tag} /><button onClick={this.onCreatedTag}>add</button>
                     {

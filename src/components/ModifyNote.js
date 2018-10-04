@@ -7,24 +7,43 @@ export class ModifyNote extends Component {
         super(props);
         this.getModifyedNote = this.getModifyedNote.bind(this);
         this.state = {
-            tag: ''
+            tag: '',
+            note: {}
         }
-        this.onModifyedTitleChanging = this.onModifyedTitleChanging.bind(this);
+         this.onModifyedTitleChanging = this.onModifyedTitleChanging.bind(this);
         this.onModifyedEntryChanging = this.onModifyedEntryChanging.bind(this);
         this.onCreatedTag = this.onCreatedTag.bind(this);
         this.onCreatedTagChange = this.onCreatedTagChange.bind(this);
         this.onUpdateTags = this.onUpdateTags.bind(this);
     }
+    componentWillMount(){
+        this.setState({
+            note: this.props.note
+        });
+    }
+    componentDidUpdate() {
+        if(this.state.note!=this.props.note){
+            this.setState({
+                note: this.props.note
+            });
+        }
+    }
     getModifyedNote(e) {
-        this.props.onModifyNote(this.props.note);
+        this.props.onModifyNote(this.state.note);
     }
     onModifyedTitleChanging(e) {
-
-        this.props.note.title = e.target.value;
+        let note=this.state.note;
+        note.title=e.target.value;
+        this.setState({
+            note: note
+        });
     }
     onModifyedEntryChanging(e) {
-
-        this.props.note.entry = e.target.value;
+        let note=this.state.note;
+        note.entry=e.target.value;
+        this.setState({
+            note: note
+        });
     }
     onCreatedTagChange(e) {
         this.setState({
@@ -46,17 +65,18 @@ export class ModifyNote extends Component {
     }
     render() {
         let tags = <TagList onUpdateTags={this.onUpdateTags} tagState='modify' tags={this.props.note.tags} />
+
         return (
             <div>
                 <h3 className='item-justify'>Modify</h3>
-                <input className='item-justify' placeholder='Title' onChange={this.onModifyedTitleChanging} defaultValue={this.props.note.title} /><br />
+                <input className='item-justify' placeholder='Title' onChange={this.onModifyedTitleChanging}  value={this.state.note.title}/><br />
                 <div className='item-justify'>
                     <input className='item-inner-justify' placeholder='Tag' onChange={this.onCreatedTagChange} value={this.state.tag} /><button onClick={this.onCreatedTag}>add</button>
                     {
                         tags
                     }
                 </div>
-                <textarea className='item-justify textarea' placeholder='Entry' onChange={this.onModifyedEntryChanging} defaultValue={this.props.note.entry}></textarea><br />
+                <textarea className='item-justify textarea' placeholder='Entry' onChange={this.onModifyedEntryChanging} value={this.state.note.entry}></textarea><br />
                 <button className='item-right' onClick={this.getModifyedNote}>Modify</button>
             </div>
         );

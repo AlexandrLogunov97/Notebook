@@ -25,7 +25,7 @@ class App extends Component {
         {
           title: 'Note 3',
           entry: 'Text for note 3',
-          tags: ['One ', 'Two ','three '],
+          tags: ['One ', 'Two ', 'three '],
           date: new Date()
         }
       ],
@@ -55,7 +55,7 @@ class App extends Component {
   }
   onCreateNote(note) {
     if (note) {
-      note.date=new Date();
+      note.date = new Date();
       let newNotes = this.state.notes;
       newNotes.push(note);
       this.setState({
@@ -96,10 +96,10 @@ class App extends Component {
       let noteList = this.state.notes;
       let newNotes = [];
       if (this.state.filterMode === 'Tags') {
-        newNotes=[];
+        newNotes = [];
         noteList.forEach(note => {
           note.tags.forEach(tag => {
-            if (tag.trim().toLowerCase().includes(e.target.value.trim().toLowerCase()) && newNotes.indexOf(note)===-1) {
+            if (tag.trim().toLowerCase().includes(e.target.value.trim().toLowerCase()) && newNotes.indexOf(note) === -1) {
               newNotes.push(note);
             }
           })
@@ -107,7 +107,7 @@ class App extends Component {
 
       }
       else if (this.state.filterMode === 'Title') {
-        newNotes=[];
+        newNotes = [];
         noteList.forEach(note => {
           if (note.title.trim().toLowerCase().includes(e.target.value.trim().toLowerCase())) {
             newNotes.push(note);

@@ -165,9 +165,9 @@ class App extends Component {
   getNoteList() {
     let noteList;
     if (this.state.noteList === 'Simple')
-      noteList = <SimpleNoteList onSelectNote={this.onSelectNote} notes={this.state.filteredNotes} />
+      noteList = <SimpleNoteList onSelectNote={this.onSelectNote} notes={this.state.filteredNotes}/>
     else if (this.state.noteList === 'Advanced')
-      noteList = <AdvancedNoteList onSelectNote={this.onSelectNote} notes={this.state.filteredNotes} />
+      noteList = <AdvancedNoteList onSelectNote={this.onSelectNote} notes={this.state.filteredNotes}/>
 
     return noteList;
   }

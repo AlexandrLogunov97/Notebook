@@ -19,27 +19,29 @@ export class ModifyNote extends Component {
         this.props.onModifyNote(this.props.note);
     }
     onModifyedTitleChanging(e) {
-    
-            this.props.note.title = e.target.value;
+
+        this.props.note.title = e.target.value;
     }
     onModifyedEntryChanging(e) {
-   
-            this.props.note.entry = e.target.value;
+
+        this.props.note.entry = e.target.value;
     }
     onCreatedTagChange(e) {
         this.setState({
             tag: e.target.value
         });
     }
-    onCreatedTag(e) {     
-        if(this.state.tag)
-            this.props.note.tags.push(this.state.tag);
+    onCreatedTag(e) {
+        if (this.state.tag) {
+            if (!this.props.note.tags.find(tag => { return tag.trim().toLowerCase() === this.state.tag.trim().toLowerCase() ? tag : null }))
+                this.props.note.tags.push(this.state.tag + ' ');
+        }
         this.setState({
             tag: ''
         });
     }
-    onUpdateTags(newTags){
-        this.props.note.tags=newTags;
+    onUpdateTags(newTags) {
+        this.props.note.tags = newTags;
         this.getModifyedNote(this.props.note);
     }
     render() {

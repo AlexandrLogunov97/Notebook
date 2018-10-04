@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {TagList} from './TagList';
+import { TagList } from './TagList';
 import '../App.css';
 
 export class CreateNote extends Component {
@@ -15,11 +15,11 @@ export class CreateNote extends Component {
             },
             tag: ''
         }
-        this.onCreatedTitleChanging=this.onCreatedTitleChanging.bind(this);
-        this.onCreatedEntryChanging=this.onCreatedEntryChanging.bind(this);
-        this.onCreatedTag=this.onCreatedTag.bind(this);
-        this.onCreatedTagChange=this.onCreatedTagChange.bind(this);
-        this.onUpdateTags=this.onUpdateTags.bind(this);
+        this.onCreatedTitleChanging = this.onCreatedTitleChanging.bind(this);
+        this.onCreatedEntryChanging = this.onCreatedEntryChanging.bind(this);
+        this.onCreatedTag = this.onCreatedTag.bind(this);
+        this.onCreatedTagChange = this.onCreatedTagChange.bind(this);
+        this.onUpdateTags = this.onUpdateTags.bind(this);
     }
     getCreatedNote(e) {
         this.props.onCreateNote(this.state.note);
@@ -27,7 +27,7 @@ export class CreateNote extends Component {
     onCreatedTitleChanging(e) {
         let note = this.state.note;
         note.title = e.target.value;
- 
+
         if (note.title)
             this.setState({
                 note: note
@@ -41,35 +41,37 @@ export class CreateNote extends Component {
                 note: note
             });
     }
-    onCreatedTagChange(e){
+    onCreatedTagChange(e) {
         this.setState({
-            tag: e.target.value+' '
+            tag: e.target.value
         });
     }
-    onCreatedTag(e){
-        let note=this.state.note;
-        if(this.state.tag)
-            note.tags.push(this.state.tag);
+    onCreatedTag(e) {
+        let note = this.state.note;
+        if (this.state.tag) {
+            if (!note.tags.find(tag => { return tag.trim().toLowerCase() === this.state.tag.trim().toLowerCase() ? tag : null }))
+                note.tags.push(this.state.tag + ' ');
+        }
         this.setState({
             note: note,
             tag: ''
         });
     }
-    onUpdateTags(newTags){
-        let note =this.state.note;
-        note.tags=newTags;
+    onUpdateTags(newTags) {
+        let note = this.state.note;
+        note.tags = newTags;
         this.setState({
             note: note
         });
     }
     render() {
-        let tags=<TagList onUpdateTags={this.onUpdateTags} tagState='modify' tags={this.state.note.tags}/>
+        let tags = <TagList onUpdateTags={this.onUpdateTags} tagState='modify' tags={this.state.note.tags} />
         return (
             <div>
                 <h3 className='item-justify'>Create</h3>
-                <input className='item-justify' placeholder='Title' onChange={this.onCreatedTitleChanging}/><br />
+                <input className='item-justify' placeholder='Title' onChange={this.onCreatedTitleChanging} /><br />
                 <div className='item-justify'>
-                    <input className='item-inner-justify' placeholder='Tag' onChange={this.onCreatedTagChange} value={this.state.tag}/><button onClick={this.onCreatedTag}>add</button>
+                    <input className='item-inner-justify' placeholder='Tag' onChange={this.onCreatedTagChange} value={this.state.tag} /><button onClick={this.onCreatedTag}>add</button>
                     {
                         tags
                     }

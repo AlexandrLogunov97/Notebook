@@ -13,17 +13,20 @@ class App extends Component {
         {
           title: 'Note 1',
           entry: 'Text for note 1',
-          tags: ['One ']
+          tags: ['One '],
+          date: new Date()
         },
         {
           title: 'Note 2',
           entry: 'Text for note 2',
-          tags: ['One ', 'Two ']
+          tags: ['One ', 'Two '],
+          date: new Date()
         },
         {
           title: 'Note 3',
           entry: 'Text for note 3',
-          tags: ['One ', 'Two ','three ']
+          tags: ['One ', 'Two ','three '],
+          date: new Date()
         }
       ],
       filteredNotes: [],
@@ -52,9 +55,9 @@ class App extends Component {
   }
   onCreateNote(note) {
     if (note) {
+      note.date=new Date();
       let newNotes = this.state.notes;
       newNotes.push(note);
-      debugger;
       this.setState({
         notes: newNotes,
         mode: 'View'

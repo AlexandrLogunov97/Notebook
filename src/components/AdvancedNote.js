@@ -20,7 +20,7 @@ export class AdvancedNote extends Component {
 
                 }<br/>
                 date: {
-                    nowDate.toDateString()
+                    this.props.note.date.toDateString()
                 }
                 <br/>
                 tags: ({

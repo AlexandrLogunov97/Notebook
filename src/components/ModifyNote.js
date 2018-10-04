@@ -19,11 +19,11 @@ export class ModifyNote extends Component {
         this.props.onModifyNote(this.props.note);
     }
     onModifyedTitleChanging(e) {
-        if (e.target.value)
+    
             this.props.note.title = e.target.value;
     }
     onModifyedEntryChanging(e) {
-        if (e.target.value)
+   
             this.props.note.entry = e.target.value;
     }
     onCreatedTagChange(e) {
@@ -46,14 +46,14 @@ export class ModifyNote extends Component {
         return (
             <div>
                 <h3 className='item-justify'>Modify</h3>
-                <input className='item-justify' placeholder='Title' onChange={this.onModifyedTitleChanging} value={this.props.note.title} /><br />
+                <input className='item-justify' placeholder='Title' onChange={this.onModifyedTitleChanging} defaultValue={this.props.note.title} /><br />
                 <div className='item-justify'>
                     <input className='item-inner-justify' placeholder='Tag' onChange={this.onCreatedTagChange} value={this.state.tag} /><button onClick={this.onCreatedTag}>add</button>
                     {
                         tags
                     }
                 </div>
-                <textarea className='item-justify textarea' placeholder='Entry' onChange={this.onModifyedEntryChanging} value={this.props.note.entry}></textarea><br />
+                <textarea className='item-justify textarea' placeholder='Entry' onChange={this.onModifyedEntryChanging} defaultValue={this.props.note.entry}></textarea><br />
                 <button className='item-right' onClick={this.getModifyedNote}>Modify</button>
             </div>
         );

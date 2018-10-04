@@ -10,7 +10,8 @@ export class CreateNote extends Component {
             note: {
                 title: '',
                 entry: '',
-                tags: []
+                tags: [],
+                date: {}
             },
             tag: ''
         }

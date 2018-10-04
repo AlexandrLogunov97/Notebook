@@ -12,7 +12,6 @@ export class AdvancedNote extends Component {
     }
     render() {
         let nowDate = new Date();
-
         return (
             <div className='advanced-note' onClick={this.getSelectNote}>
                 {

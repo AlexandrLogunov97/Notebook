@@ -64,21 +64,17 @@ export class ModifyNote extends Component {
         this.getModifyedNote(this.props.note);
     }
     render() {
-        let tags = <TagList onUpdateTags={this.onUpdateTags} tagState='modify' tags={this.props.note.tags} />
-
-        return (
+        return this.props.note ? (
             <div>
                 <h3 className='item-justify'>Modify</h3>
                 <input className='item-justify' placeholder='Title' onChange={this.onModifyedTitleChanging}  value={this.state.note.title}/><br />
                 <div className='item-justify'>
                     <input className='item-inner-justify' placeholder='Tag' onChange={this.onCreatedTagChange} value={this.state.tag} /><button onClick={this.onCreatedTag}>add</button>
-                    {
-                        tags
-                    }
+                    <TagList onUpdateTags={this.onUpdateTags} tagState='modify' tags={this.props.note.tags} />
                 </div>
                 <textarea className='item-justify textarea' placeholder='Entry' onChange={this.onModifyedEntryChanging} value={this.state.note.entry}></textarea><br />
                 <button className='item-right' onClick={this.getModifyedNote}>Modify</button>
             </div>
-        );
+        ):(<h2>Empty</h2>);
     }
 }

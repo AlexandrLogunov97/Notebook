@@ -43,12 +43,13 @@ export class CreateNote extends Component {
     }
     onCreatedTagChange(e){
         this.setState({
-            tag: e.target.value
+            tag: e.target.value+' '
         });
     }
     onCreatedTag(e){
         let note=this.state.note;
-        note.tags.push(this.state.tag);
+        if(this.state.tag)
+            note.tags.push(this.state.tag);
         this.setState({
             note: note,
             tag: ''

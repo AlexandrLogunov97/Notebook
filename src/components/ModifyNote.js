@@ -32,7 +32,8 @@ export class ModifyNote extends Component {
         });
     }
     onCreatedTag(e) {     
-        this.props.note.tags.push(this.state.tag);
+        if(this.state.tag)
+            this.props.note.tags.push(this.state.tag);
         this.setState({
             tag: ''
         });

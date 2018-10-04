@@ -22,7 +22,8 @@ export class CreateNote extends Component {
         this.onUpdateTags = this.onUpdateTags.bind(this);
     }
     getCreatedNote(e) {
-        this.props.onCreateNote(this.state.note);
+        if(this.state.note.title.trim().toLowerCase())
+            this.props.onCreateNote(this.state.note);
     }
     onCreatedTitleChanging(e) {
         let note = this.state.note;
